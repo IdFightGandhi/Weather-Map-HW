@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-var searchHistory = [];
+
 
 moment().format("L");
 
@@ -138,12 +138,6 @@ function searchCity(cityName) {
     
     pageLoad();
 
-    
-    //searchHistory.push(cityName);
-
-
-
-
     })};
 
     //Here you need an ajax call for the five day forecast
@@ -155,13 +149,13 @@ function searchCity(cityName) {
 
 //     var cityInput = $("city-input").val();
 //     var textContent = $(this).siblings("input").val();
-//     var storeArr = [];
+//     var storeArr = [];0
 //     storeArr.push(textContent);
    
 // });
 
 function pageLoad() {
-    var lastSearch = JSON.parse(localStorage.getItem("city"));
+    var lastSearch = JSON.parse(localStorage.getItem("cityName"));
     var searchDiv = $("<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>").text(lastSearch);
     var psearch = $("<div>");
     psearch.append(searchDiv)
@@ -172,15 +166,9 @@ function pageLoad() {
 $("#select-city").on("click", function (event) {
     event.preventDefault();
     var citySearch =$("#city-input").val().trim()
-    console.log(citySearch, "hello");
-    searchHistory.push(citySearch);
-    localStorage.setItem("city", JSON.stringify(searchHistory));
-    console.log("178hello")
+    console.log(citySearch);
     searchCity(citySearch);
     pageLoad();
-    
-
-    // console.log("this is my stuff")
 })
 
 $("#searchhistory").on('click', '.btn', function(event) {

@@ -4,7 +4,17 @@ var searchHistory = [];
 
 moment().format("L");
 
+if (localStorage.getItem("city")!==null){
 
+    var lastSearch = JSON.parse(localStorage.getItem("city"));
+    for(var i =0;i<lastSearch.length;i++){
+        pageLoad(lastSearch[i]);
+    }
+
+    
+
+
+}
 //search function for Current City weather//
 
 function searchCity(cityName) {
@@ -160,9 +170,9 @@ function searchCity(cityName) {
    
 // });
 
-function pageLoad() {
-    var lastSearch = JSON.parse(localStorage.getItem("city"));
-    var searchDiv = $("<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>").text(lastSearch);
+function pageLoad(text) {
+    //var lastSearch = JSON.parse(localStorage.getItem("city"));
+    var searchDiv = $("<button class='btn border text-muted mt-1 shadow-sm bg-white rounded' style='width: 12rem;'>").text(text);
     var psearch = $("<div>");
     psearch.append(searchDiv)
     $("#searchhistory").prepend(psearch);
@@ -177,7 +187,7 @@ $("#select-city").on("click", function (event) {
     localStorage.setItem("city", JSON.stringify(searchHistory));
     console.log("178hello")
     searchCity(citySearch);
-    pageLoad();
+    // pageLoad();
     
 
     // console.log("this is my stuff")
